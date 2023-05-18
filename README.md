@@ -40,6 +40,7 @@ To start the app, follow these steps:
 ## using the APIs
 
 To test the Graphql API ,here is the base schema:
+```
 type Query {
 account: Account
 balance: Float!
@@ -72,6 +73,7 @@ amount: Float!
 timestamp: String!
 senderRunningBalance: Float!
 }
+```
 
 ## Stay in touch
 
