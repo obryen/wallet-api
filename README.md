@@ -22,51 +22,60 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
-```bash
-$ npm install
-```
-
+1. Clone the repository to your local machine.
+2. Open a terminal or command prompt and navigate to the root directory of the project.
+3. Copy the env.example file to .env:
+4. Update the values in the .env file as necessary to match your environment.
 ## Running the app
 
-```bash
-# development
-$ npm run start
+To start the app, follow these steps:
 
-# watch mode
-$ npm run start:dev
+- Open a terminal or command prompt and navigate to the directory containing your docker-compose.yml file.
+- Run the command docker-compose up to start the app and its dependencies.
+- Wait for the containers to start and the app to be ready. You should see some output in the terminal indicating the progress of the startup process.
+- Once the app is running, you can access it by opening a web browser and navigating to the URL http://localhost:3000.
 
-# production mode
-$ npm run start:prod
-```
+## using the APIs
 
-## Test
+To test the Graphql API ,here is the base schema:
+type Query {
+account: Account
+balance: Float!
+transactions: [Transaction]
+}
 
-```bash
-# unit tests
-$ npm run test
+type Mutation {
+createAccount(createAccountDto: {name: String!, email: String!, password: String!}): Account
+login(loginDto: {email: String!, password: String!}): SessionDto
+transfer(makePaymentDto: {email: String!, amount: Float!}): Transaction
+}
 
-# e2e tests
-$ npm run test:e2e
+type SessionDto{
+  token: String!
+  Sstatus: String!
+}
 
-# test coverage
-$ npm run test:cov
-```
+type Account {
+id: ID!
+name: String!
+email: String!
+password: String!
+}
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+type Transaction {
+id: ID!
+sender: Account!
+recipient: Account!
+amount: Float!
+timestamp: String!
+senderRunningBalance: Float!
+}
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Bryan Toromo]
 
 ## License
 
