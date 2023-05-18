@@ -40,7 +40,8 @@ To start the app, follow these steps:
 ## using the APIs
 
 To test the Graphql API ,here is the base schema:
-```
+Point to Note: 
+Please ensure that you include the session token in the request headers for all GraphQL API endpoints, except for the "register" and "login" endpoints.
 type Query {
 account: Account
 balance: Float!
@@ -73,6 +74,7 @@ amount: Float!
 timestamp: String!
 senderRunningBalance: Float!
 }
+
 ```
 
 ## Stay in touch
