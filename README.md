@@ -77,7 +77,7 @@ timestamp: String!
 senderRunningBalance: Float!
 }
 
-
+```
 ## Stay in touch
 
 - Author - [Bryan Toromo]
