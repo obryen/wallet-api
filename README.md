@@ -42,6 +42,8 @@ To start the app, follow these steps:
 To test the Graphql API ,here is the base schema:
 Point to Note: 
 Please ensure that you include the session token in the request headers for all GraphQL API endpoints, except for the "register" and "login" endpoints.
+
+```
 type Query {
 account: Account
 balance: Float!
@@ -56,7 +58,7 @@ transfer(makePaymentDto: {email: String!, amount: Float!}): Transaction
 
 type SessionDto{
   token: String!
-  Sstatus: String!
+  status: String!
 }
 
 type Account {
@@ -75,7 +77,6 @@ timestamp: String!
 senderRunningBalance: Float!
 }
 
-```
 
 ## Stay in touch
 
