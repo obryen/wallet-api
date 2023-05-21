@@ -19,49 +19,17 @@ export class PaymentsService {
 
 
   async fetchTransactions(email: string): Promise<Payment[]> {
-    const payments = await this.paymentModel.aggregate([
-      {
-        $lookup: {
-          from: 'accounts',
-          localField: 'sender',
-          foreignField: '_id',
-          as: 'senderAccount',
-        },
-      },
-      {
-        $lookup: {
-          from: 'accounts',
-          localField: 'recipient',
-          foreignField: '_id',
-          as: 'recipientAccount',
-        },
-      },
-      {
-        $addFields: {
-          senderEmail: { $arrayElemAt: ['$senderAccount.email', 0] },
-          recipientEmail: { $arrayElemAt: ['$recipientAccount.email', 0] },
-        },
-      },
-      // {
-      //   $match: {
-      //     'senderAccount.email': email,
-      //   },
-      // },
-      {
-        $project: {
-          _id: 1,
-          sender: { $arrayElemAt: ['$senderAccount.name', 0] },
-          recipient: { $arrayElemAt: ['$recipientAccount.name', 0] },
-          amount: 1,
-          senderRunningBalance: 1,
-          timestamp: 1,
-          version: 1,
-        },
-      },
-    ]);
+    const senderAccount = await this.accountModel.findOne({ email }).exec();
+    if (!senderAccount) {
+      throw new Error('Sender account not found');
+    }
 
+    const payments = await this.paymentModel
+      .find({ sender: senderAccount._id })
+      .sort({ timestamp: -1 })
+      .exec();
 
-    return payments
+    return payments;
 
   }
 

@@ -8,7 +8,7 @@ import {
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { ILoggedInUser } from 'src/account/interfaces/logged-in-user.interface';
+import { ILoggedInUser } from '../account/interfaces/logged-in-user.interface';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
